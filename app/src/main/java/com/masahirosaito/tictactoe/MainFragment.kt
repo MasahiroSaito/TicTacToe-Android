@@ -1,6 +1,7 @@
 package com.masahirosaito.tictactoe
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,22 @@ class MainFragment : Fragment() {
                 setCancelable(false)
                 setPositiveButton(R.string.ok_label, null)
                 show()
+            }
+        }
+
+        rootView.findViewById(R.id.new_button).apply {
+            setOnClickListener {
+                val intent = Intent(activity, GameActivity::class.java)
+                activity.startActivity(intent)
+            }
+        }
+
+        rootView.findViewById(R.id.continue_button).apply {
+            setOnClickListener {
+                val intent = Intent(activity, GameActivity::class.java).apply {
+                    putExtra(GameActivity.KEY_RESTORE, true)
+                }
+                activity.startActivity(intent)
             }
         }
 
